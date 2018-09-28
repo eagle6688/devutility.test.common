@@ -7,4 +7,8 @@ public abstract class BaseTest extends devutility.internal.test.BaseTest {
 	protected void showStringDescriptor(String name, final DeviceHandle handle, final byte index) {
 		System.out.format("%s: %x, name: %s\n", name, index, LibUsb.getStringDescriptor(handle, index));
 	}
+
+	protected int toHexInt(byte value) {
+		return value & 0xff;
+	}
 }
