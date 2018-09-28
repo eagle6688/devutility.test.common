@@ -38,6 +38,12 @@ public class DeviceHandleTest extends BaseTest {
 				}
 
 				System.out.print(deviceDescriptor.dump());
+				System.out.format("idVendor: %d\n", deviceDescriptor.idVendor());
+
+				//This method cannot convet decimal digit to HEX
+				Integer idProduct = (int) deviceDescriptor.idProduct();
+				System.out.format("idProduct: %d, HEX: %s\n", idProduct, Integer.toHexString(idProduct));
+
 				DeviceHandle deviceHandle = new DeviceHandle();
 				result = LibUsb.open(device, deviceHandle);
 
