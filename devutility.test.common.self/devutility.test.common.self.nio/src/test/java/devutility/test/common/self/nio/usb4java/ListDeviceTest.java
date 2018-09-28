@@ -10,7 +10,7 @@ import org.usb4java.LibUsbException;
 import devutility.internal.test.BaseTest;
 import devutility.internal.test.TestExecutor;
 
-public class DeviceListTest extends BaseTest {
+public class ListDeviceTest extends BaseTest {
 	@Override
 	public void run() {
 		// Create the libusb context
@@ -58,6 +58,6 @@ public class DeviceListTest extends BaseTest {
 	}
 
 	public static void main(String[] args) {
-		TestExecutor.run(DeviceListTest.class);
+		TestExecutor.run(ListDeviceTest.class);
 	}
 }
