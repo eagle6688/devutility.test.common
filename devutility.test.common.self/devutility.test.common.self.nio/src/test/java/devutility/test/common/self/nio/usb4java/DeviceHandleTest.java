@@ -53,26 +53,23 @@ public class DeviceHandleTest extends BaseTest {
 					continue;
 				}
 
-				showStringDescriptor(deviceHandle, deviceDescriptor.bDescriptorType(), "bDescriptorType");
-				showStringDescriptor(deviceHandle, deviceDescriptor.bDeviceClass(), "bDeviceClass");
-				showStringDescriptor(deviceHandle, deviceDescriptor.bDeviceProtocol(), "bDeviceProtocol");
-				showStringDescriptor(deviceHandle, deviceDescriptor.bDeviceSubClass(), "bDeviceSubClass");
-				showStringDescriptor(deviceHandle, deviceDescriptor.bLength(), "bLength");
-				showStringDescriptor(deviceHandle, deviceDescriptor.bMaxPacketSize0(), "bMaxPacketSize0");
-				showStringDescriptor(deviceHandle, deviceDescriptor.bNumConfigurations(), "bNumConfigurations");
-				showStringDescriptor(deviceHandle, deviceDescriptor.iManufacturer(), "iManufacturer");
-				showStringDescriptor(deviceHandle, deviceDescriptor.iProduct(), "iProduct");
-				showStringDescriptor(deviceHandle, deviceDescriptor.iSerialNumber(), "iSerialNumber");
+				showStringDescriptor("bDescriptorType", deviceHandle, deviceDescriptor.bDescriptorType());
+				showStringDescriptor("bDeviceClass", deviceHandle, deviceDescriptor.bDeviceClass());
+				showStringDescriptor("bDeviceProtocol", deviceHandle, deviceDescriptor.bDeviceProtocol());
+				showStringDescriptor("bDeviceSubClass", deviceHandle, deviceDescriptor.bDeviceSubClass());
+				showStringDescriptor("bLength", deviceHandle, deviceDescriptor.bLength());
+				showStringDescriptor("bMaxPacketSize0", deviceHandle, deviceDescriptor.bMaxPacketSize0());
+				showStringDescriptor("bNumConfigurations", deviceHandle, deviceDescriptor.bNumConfigurations());
+				showStringDescriptor("iManufacturer", deviceHandle, deviceDescriptor.iManufacturer());
+				showStringDescriptor("iProduct", deviceHandle, deviceDescriptor.iProduct());
+				showStringDescriptor("iSerialNumber", deviceHandle, deviceDescriptor.iSerialNumber());
 				System.out.println("\n");
 				LibUsb.close(deviceHandle);
 			}
 		} finally {
 			LibUsb.freeDeviceList(list, true);
+			LibUsb.exit(context);
 		}
-	}
-
-	private void showStringDescriptor(final DeviceHandle handle, final byte index, String name) {
-		System.out.format("%s: %x, name: %s\n", name, index, LibUsb.getStringDescriptor(handle, index));
 	}
 
 	public static void main(String[] args) {
