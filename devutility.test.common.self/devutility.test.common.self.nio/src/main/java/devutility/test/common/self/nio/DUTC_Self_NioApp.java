@@ -33,7 +33,7 @@ public class DUTC_Self_NioApp {
 			for (SelectionKey selectionKey : selectionKeys) {
 				try (ReadableByteChannel channel = (ReadableByteChannel) selectionKey.channel()) {
 					byte[] bytes = read(channel);
-					System.out.println(new String(bytes, Charset.forName("UTF-8")));
+					System.out.format("Read from device: %s\n", new String(bytes, Charset.forName("UTF-8")));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,10 +45,12 @@ public class DUTC_Self_NioApp {
 
 	public static byte[] read(ReadableByteChannel channel) throws IOException {
 		int count = 0;
-		ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+		ByteBuffer byteBuffer = ByteBuffer.allocate(64);
 
 		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
 			while ((count = channel.read(byteBuffer)) != -1) {
+				System.out.format("Read from device: %s\n", new String(byteBuffer.array(), Charset.forName("UTF-8")));
+				
 				byteBuffer.flip();
 
 				if (byteBuffer.hasArray()) {
