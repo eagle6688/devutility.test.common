@@ -9,5 +9,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>devutility.test.common.self.nio</module>
+		<module>devutility.test.common.self.scanner</module>
 	</modules>
 </project>
