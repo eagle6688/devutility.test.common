@@ -6,6 +6,18 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>devutility.test.common.self.scanner</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>commons-daemon</groupId>
+			<artifactId>commons-daemon</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<finalName>devutility.test.common.self.scanner</finalName>
 		<plugins>
