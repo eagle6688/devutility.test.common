@@ -1,12 +1,9 @@
 package devutility.test.common.self.nio.javaxusb;
 
-import java.util.List;
-
 import javax.usb.UsbConfiguration;
 import javax.usb.UsbConst;
 import javax.usb.UsbControlIrp;
 import javax.usb.UsbDevice;
-import javax.usb.UsbDeviceDescriptor;
 import javax.usb.UsbDisconnectedException;
 import javax.usb.UsbEndpoint;
 import javax.usb.UsbException;
@@ -21,6 +18,7 @@ import javax.usb.event.UsbPipeDataEvent;
 import javax.usb.event.UsbPipeErrorEvent;
 import javax.usb.event.UsbPipeListener;
 
+import devutility.external.usb4java.javax.UsbDeviceUtils;
 import devutility.internal.test.TestExecutor;
 import devutility.test.common.self.nio.BaseTest;
 
@@ -38,7 +36,7 @@ public class DUT_Common_Self_Nio_KeyboardTest extends BaseTest {
 			e.printStackTrace();
 		}
 
-		UsbDevice usbDevice = findDevice(usbHub, vendorId, productId);
+		UsbDevice usbDevice = UsbDeviceUtils.findDevice(usbHub, vendorId, productId);
 
 		if (usbDevice == null) {
 			System.out.format("UsbDevice with vendorId %x productId %x not found!\n", vendorId, productId);
@@ -107,29 +105,6 @@ public class DUT_Common_Self_Nio_KeyboardTest extends BaseTest {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public UsbDevice findDevice(UsbHub hub, short vendorId, short productId) {
-		@SuppressWarnings("unchecked")
-		List<UsbDevice> usbDevices = (List<UsbDevice>) hub.getAttachedUsbDevices();
-
-		for (UsbDevice device : usbDevices) {
-			UsbDeviceDescriptor desc = device.getUsbDeviceDescriptor();
-
-			if (desc.idVendor() == vendorId && desc.idProduct() == productId) {
-				return device;
-			}
-
-			if (device.isUsbHub()) {
-				device = findDevice((UsbHub) device, vendorId, productId);
-
-				if (device != null) {
-					return device;
-				}
-			}
-		}
-
-		return null;
 	}
 
 	void currentConfigurationNumber(UsbDevice usbDevice) {

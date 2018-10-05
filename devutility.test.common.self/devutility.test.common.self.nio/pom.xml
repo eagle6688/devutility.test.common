@@ -12,6 +12,11 @@
 			<artifactId>usb4java-javax</artifactId>
 			<version>1.2.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.eagle6688</groupId>
+			<artifactId>devutility.external.usb4java</artifactId>
+			<version>0.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>devutility.test.log.logback</finalName>
